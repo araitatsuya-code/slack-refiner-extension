@@ -1,3 +1,7 @@
+![image](https://github.com/user-attachments/assets/532a8721-5921-4c4e-b13c-04fb8f5e5132)
+
+![image](https://github.com/user-attachments/assets/ba9c3b08-3a43-443a-a3d4-f8b7fa9367eb)
+
 # Slack Message Refiner 拡張機能
 
 この拡張機能は、Slack の Web クライアント上でメッセージ入力欄にホットキーを押すだけで、OpenAI の LLM（GPT-4o-mini）やAnthropic Claude（claude-3-opus）を使って文章を推敲し、そのまま送信できるようにする Chrome（および対応ブラウザ）拡張です。
