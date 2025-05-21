@@ -76,3 +76,9 @@
 2. `manifest.json`, `background.js`, `content.js`, `popup.html`, `popup.js` を編集
 3. `chrome://extensions/` で「更新」して動作確認
 4. 必要に応じて DevTools の Console タブでログを確認
+
+---
+
+## セキュリティについて
+
+この拡張機能のセキュリティに関する詳細は [SECURITY.md](./SECURITY.md) をご覧ください。
