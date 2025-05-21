@@ -12,6 +12,18 @@
   <input id="apiKey" type="password" style="width:100%"/>
   <h4>Claude API Key</h4>
   <input id="claudeKey" type="password" style="width:100%"/>
+  <h4>相手</h4>
+  <select id="target">
+    <option value="boss">上司</option>
+    <option value="subordinate">部下</option>
+    <option value="colleague">同僚</option>
+  </select>
+  <h4>文体</h4>
+  <label><input type="radio" name="style" value="formal" checked> フォーマル</label>
+  <label><input type="radio" name="style" value="casual"> カジュアル</label>
+  <h4>絵文字</h4>
+  <label><input type="radio" name="emoji" value="no" checked> 使わない</label>
+  <label><input type="radio" name="emoji" value="yes"> 使う</label>
   <button id="save">保存</button>
   <script src="popup.js"></script>
 </body>

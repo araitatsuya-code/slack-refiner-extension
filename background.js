@@ -6,7 +6,17 @@ chrome.runtime.onMessage.addListener((msg, sender, respond) => {
         openaiKey,
         claudeKey,
         model = "openai",
-      } = await chrome.storage.local.get(["openaiKey", "claudeKey", "model"]);
+        target = "boss",
+        style = "formal",
+        emoji = "no",
+      } = await chrome.storage.local.get([
+        "openaiKey",
+        "claudeKey",
+        "model",
+        "target",
+        "style",
+        "emoji",
+      ]);
       let apiKey = model === "claude" ? claudeKey : openaiKey;
       if (!apiKey) {
         respond({ error: "APIキーが設定されていません" });
@@ -14,6 +24,19 @@ chrome.runtime.onMessage.addListener((msg, sender, respond) => {
       }
       try {
         let refined;
+        // 指示文の組み立て
+        let targetText =
+          target === "boss"
+            ? "上司"
+            : target === "subordinate"
+            ? "部下"
+            : "同僚";
+        let styleText = style === "formal" ? "フォーマル" : "カジュアル";
+        let emojiText =
+          emoji === "yes"
+            ? "適度に絵文字も使ってください。"
+            : "絵文字は使わないでください。";
+        let instruction = `${targetText}に送る${styleText}な日本語に推敲してください。${emojiText}推敲後の文章のみを返してください。原文や説明、質問、謝罪、その他の返答は一切不要です。`;
         if (model === "claude") {
           // Claude API
           const apiRes = await fetch("https://api.anthropic.com/v1/messages", {
@@ -30,8 +53,7 @@ chrome.runtime.onMessage.addListener((msg, sender, respond) => {
               messages: [
                 {
                   role: "user",
-                  content:
-                    "以下の日本語文章を明確かつ読みやすく推敲してください。",
+                  content: instruction,
                 },
                 { role: "user", content: msg.text },
               ],
@@ -59,7 +81,7 @@ chrome.runtime.onMessage.addListener((msg, sender, respond) => {
                 messages: [
                   {
                     role: "system",
-                    content: "文章を明確かつ読みやすく推敲してください。",
+                    content: instruction,
                   },
                   { role: "user", content: msg.text },
                 ],
