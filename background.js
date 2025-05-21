@@ -36,7 +36,7 @@ chrome.runtime.onMessage.addListener((msg, sender, respond) => {
           emoji === "yes"
             ? "適度に絵文字も使ってください。"
             : "絵文字は使わないでください。";
-        let instruction = `${targetText}に送る${styleText}な日本語に推敲してください。${emojiText}推敲後の文章のみを返してください。原文や説明、質問、謝罪、その他の返答は一切不要です。`;
+        let instruction = `${targetText}に送る${styleText}な日本語に推敲してください。${emojiText}推敲後の文章のみを返してください。原文や説明、質問、謝罪、その他の返答は一切不要です。もしパワハラやセクハラに該当する表現が含まれている場合は、「警告: パワハラ表現が含まれています」や「警告: セクハラ表現が含まれています」と明記し、どの部分が該当するか、どのように改善すればよいかも簡潔にアドバイスしてください。`;
         if (model === "claude") {
           // Claude API
           const apiRes = await fetch("https://api.anthropic.com/v1/messages", {

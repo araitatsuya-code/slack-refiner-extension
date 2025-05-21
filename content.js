@@ -35,6 +35,10 @@
             (resp) => {
               hideLoadingOverlay();
               if (resp.error) return alert(resp.error);
+              if (resp.refined.startsWith("警告:")) {
+                alert(resp.refined);
+                return;
+              }
               showPreviewDialog(original, resp.refined);
             }
           );
