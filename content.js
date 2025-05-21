@@ -32,14 +32,26 @@
 
           runtime.sendMessage(
             { type: "REFINE_REQUEST", text: original },
-            (resp) => {
+            async (resp) => {
               hideLoadingOverlay();
               if (resp.error) return alert(resp.error);
               if (resp.refined.startsWith("警告:")) {
                 alert(resp.refined);
                 return;
               }
-              showPreviewDialog(original, resp.refined);
+              // 自動送信ON/OFF判定
+              const { autoSend = false } = await chrome.storage.local.get([
+                "autoSend",
+              ]);
+              if (autoSend) {
+                textarea.innerText = resp.refined;
+                // カーソルを末尾へ
+                const sel = window.getSelection();
+                sel.selectAllChildren(textarea);
+                sel.collapseToEnd();
+              } else {
+                showPreviewDialog(original, resp.refined);
+              }
             }
           );
         }

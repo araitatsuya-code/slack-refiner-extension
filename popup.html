@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Slack Message Refiner 設定</title>
+  <style>
+    body {
+      min-width: 320px;
+      min-height: 420px;
+      margin: 12px;
+    }
+  </style>
 </head>
 <body>
   <h4>使用するAI</h4>
@@ -24,6 +31,35 @@
   <h4>絵文字</h4>
   <label><input type="radio" name="emoji" value="no" checked> 使わない</label>
   <label><input type="radio" name="emoji" value="yes"> 使う</label>
+  <h4>敬語レベル</h4>
+  <select id="keigo">
+    <option value="normal">普通</option>
+    <option value="polite">丁寧語</option>
+    <option value="respect">尊敬語</option>
+    <option value="humble">謙譲語</option>
+  </select>
+  <h4>語尾トーン</h4>
+  <select id="tone">
+    <option value="soft">柔らかめ</option>
+    <option value="normal">普通</option>
+    <option value="hard">きつめ</option>
+  </select>
+  <h4>言語</h4>
+  <select id="lang">
+    <option value="ja">日本語</option>
+    <option value="en">英語</option>
+    <option value="zh">中国語</option>
+  </select>
+  <h4>推敲レベル</h4>
+  <select id="refineLevel">
+    <option value="light">軽め（誤字脱字中心）</option>
+    <option value="normal">標準</option>
+    <option value="strong">徹底的（表現も大幅修正）</option>
+  </select>
+  <h4>カスタムプロンプト</h4>
+  <textarea id="customPrompt" rows="2" style="width:100%" placeholder="追加の指示があれば入力"></textarea>
+  <h4>自動送信</h4>
+  <label><input type="checkbox" id="autoSend"> 推敲後すぐ送信する</label>
   <button id="save">保存</button>
   <script src="popup.js"></script>
 </body>
