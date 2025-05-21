@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "Slack Message Refiner",
+    "version": "1.0",
+    "description": "Slack の入力欄でホットキーを押すと LLM による推敲結果をプレビュー＆適用します。",
+    "permissions": [
+      "storage",
+      "activeTab"
+    ],
+    "host_permissions": [
+      "https://*.slack.com/*"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://*.slack.com/*"],
+        "js": ["content.js"]
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html"
+    }
+}
+  
